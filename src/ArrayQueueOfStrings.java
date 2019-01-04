@@ -20,17 +20,20 @@ public class ArrayQueueOfStrings {
 
     void enqueue(String s) {
 
-        if(size == 0) {
-            front = 0;
-            back = 0;
-            queue[back] = s;
-        } else if(back == (queueSize - 1) && size != queueSize) {
-            back = 0;
-            queue[back] = s;
-        } else {
-            queue[++back] = s;
+        if(size < queueSize) {
+
+            if (size == 0) {
+                front = 0;
+                back = 0;
+                queue[back] = s;
+            } else if (back == (queueSize - 1) && size != queueSize) {
+                back = 0;
+                queue[back] = s;
+            } else {
+                queue[++back] = s;
+            }
+            size++;
         }
-        size++;
     }
 
     String dequeue() {
@@ -51,6 +54,10 @@ public class ArrayQueueOfStrings {
         queue.enqueue("Third");
         queue.dequeue();
         queue.enqueue("Fourth");
+        queue.dequeue();
+        queue.dequeue();
+        queue.enqueue("Fifth");
+        queue.enqueue("Sixth");
         while (!queue.isEmpty()) {
             System.out.println(queue.dequeue());
         }
